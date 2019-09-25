@@ -11,6 +11,7 @@
 				<li>状态</li>
 				<li>操作<p @click="$router.push({name: 'Edit', params: {id: 0}})">+ 新建考评</p></li>
 			</ul>
+
 			<ul v-for="item in quList">
 				<li @click="checkItem(item)"><i :class="{'checked': item.checked}"></i></li>
 				<li v-text="item.title"></li>
@@ -84,6 +85,7 @@ export default {
 
 	methods: {
 		checkItem(item, flag = null) {
+			
 			if (typeof item.checked === 'undefined') {
 				Vue.set(item, 'checked', true);
 			}
