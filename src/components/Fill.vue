@@ -389,8 +389,10 @@ that.isSelect[key]=false
 changeSelect(a,b){
 	let that=this;
 
-	console.log("sb");
+	console.log("a");
+	console.log("e");
 	
+
 for (const key in that.isSelect) {
 
 if(key!=a+b){
