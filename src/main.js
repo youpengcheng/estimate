@@ -4,6 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import Element from 'element-ui'
+Vue.use(Element, {
+  size: 'small' // 设置element-ui默认大小medium
+})
+import 'element-ui/lib/theme-chalk/index.css'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

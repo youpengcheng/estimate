@@ -74,22 +74,22 @@
 		margin: 1rem 0;
 		padding: 1rem 2rem;
 
-		&:hover {
-			background-color: $light-orange;
+		// &:hover {
+		// 	background-color: $light-orange;
 
-			.operat-list {
-				display: flex;
-			}
+		// 	.operat-list {
+		// 		display: flex;
+		// 	}
 
-			div:last-of-type {
-				display: none;
-			}
+		// 	div:last-of-type {
+		// 		display: none;
+		// 	}
 
-			#require-check {
-				display: block;
-			}
+		// 	#require-check {
+		// 		display: block;
+		// 	}
 
-		}
+		// }
 
 		h3 {
 			height: 2rem;
@@ -109,9 +109,9 @@
 
 		}
 
-		div:last-of-type {
-			height: 2rem;
-		}
+		// div:last-of-type {
+		// 	height: 2rem;
+		// }
 
 		.qu-num {
 			display: inline-block;
@@ -144,7 +144,7 @@
 	}
 
 	.options-list > li {
-		height: 2rem;
+		// height: 2rem;
 		margin: 1rem 0 0 4rem;
 		line-height: 2rem;
 

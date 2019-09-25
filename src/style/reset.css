@@ -10,4 +10,5 @@ a { text-decoration: none; }
 q:before, q:after { content: ''; }
 abbr, acronym { border: 0; }
 html { height: 100%; font-size: 62.5%; }
-body { height: 100%; font-size: 1.4rem; }
+/* body { height: 100%; font-size: 1.4rem; } */
+body {  font-size: 1.4rem; }

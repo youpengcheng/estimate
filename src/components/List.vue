@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<div class="add-wrapper" v-if="!quList.length">
-			<p @click="$router.push({name: 'Edit', params: {id: 0}})">+ 新建问卷</p>
+			<p @click="$router.push({name: 'Edit', params: {id: 0}})">+ 新建考评</p>
 		</div>
 		<div class="list-wrapper" v-else>
 			<ul>
@@ -9,7 +9,7 @@
 				<li>标题</li>
 				<li>截止时间</li>
 				<li>状态</li>
-				<li>操作<p @click="$router.push({name: 'Edit', params: {id: 0}})">+ 新建问卷</p></li>
+				<li>操作<p @click="$router.push({name: 'Edit', params: {id: 0}})">+ 新建考评</p></li>
 			</ul>
 			<ul v-for="item in quList">
 				<li @click="checkItem(item)"><i :class="{'checked': item.checked}"></i></li>
@@ -17,7 +17,7 @@
 				<li v-text="item.time"></li>
 				<li v-text="item.stateName" :class="{'releasing': (item.state === 1)}"></li>
 				<li>
-					<router-link tag="span" :to="`/fill/${item.id}`">查看问卷</router-link>
+					<router-link tag="span" :to="`/fill/${item.id}`">查看考评</router-link>
 					<span v-if="!item.state" @click="iterator = editItem(item); iterator.next()">编辑</span>
 					<router-link tag="span" v-else :to="`/data/${item.id}`">查看数据</router-link>
 					<span @click="iterator = deleteItem(item); iterator.next()">删除</span>
@@ -64,7 +64,11 @@ export default {
 		let curTime = Date.now();
 
 		this.quList = Store.fetch() || data.list;
+
+
+
 		this.quList.forEach((item) => {
+
 			if (item.state === 1) {
 				let itemTime = new Date(item.time.replace(/-/g, ','))*1;
 				if (itemTime < curTime) {
@@ -72,7 +76,10 @@ export default {
 					item.stateName = '已结束';
 				}
 			}
+
 		})
+
+
 	},
 
 	methods: {
@@ -110,7 +117,7 @@ export default {
 			if (!checkedList.length) {
 				return;
 			}
-			yield this.showPrompt('确认要删除所选问卷？');
+			yield this.showPrompt('确认要删除所选考评？');
 			yield this.quList = this.quList.filter( item => !item.checked);
 		},
 
@@ -127,13 +134,19 @@ export default {
 	},
 
 	watch: {
+
 		quList: {
+
 			handler(list) {
 				list.forEach((item, index) => item.id = index + 1);
 				Store.save(list);
 			},
+
 			deep: true
+
+
 		}
+
 	}
 }
 </script>

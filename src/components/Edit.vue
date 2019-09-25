@@ -84,7 +84,7 @@
 			</div>
 			<footer>
 				<div class="date-part">
-					<label>问卷截止日期
+					<label>考评截止日期
 						<input type="text"
 						readonly="true"
 						v-model="date"
@@ -96,8 +96,8 @@
 					</date-components>
 				</div>
 				<div class="ctrl-part">
-					<span @click="iterator = saveBtn(); iterator.next()">保存问卷</span>
-					<span @click="iterator = releaseBtn(); iterator.next()">发布问卷</span>
+					<span @click="iterator = saveBtn(); iterator.next()">保存考评</span>
+					<span @click="iterator = releaseBtn(); iterator.next()">发布考评</span>
 				</div>
 			</footer>
 	</div>
@@ -196,7 +196,7 @@ export default {
 			if (id === 0) {
 				let item = {};
 				item.id = this.quList.length + 1;
-				item.title = `问卷调查${item.id}`;
+				item.title = `考评调查${item.id}`;
 				item.state = 0;
 				item.stateName = '未发布';
 				item.time = '2018-12-31';
@@ -273,7 +273,7 @@ export default {
 
 		reuse(index) {
 			if (this.questions.length === 10) {
-				this.errorPrompt(`每份问卷至多10个问题！`);
+				this.errorPrompt(`每份考评至多10个问题！`);
 				return;
 			}
 			let oldQuestion = this.questions[index];
@@ -283,7 +283,7 @@ export default {
 
 		delQuestion(index) {
 			if (this.questions.length <= 1) {
-				this.errorPrompt(`每份问卷至少一个问题！`);
+				this.errorPrompt(`每份考评至少一个问题！`);
 				return;
 			}
 			this.questions.splice(index, 1);
@@ -312,7 +312,7 @@ export default {
 
 		addType(type) {
 			if (this.questions.length === 10) {
-				this.errorPrompt(`每份问卷至多10个问题！`);
+				this.errorPrompt(`每份考评至多10个问题！`);
 				return;
 			}
 			this.questions.push(this.questionTemplate[type]);
@@ -320,7 +320,7 @@ export default {
 
 		saveData() {
 			if (this.questions.length < 1) {
-				this.errorPrompt(`每份问卷至少一个问题！`);
+				this.errorPrompt(`每份考评至少一个问题！`);
 				return;
 			}
 
@@ -342,13 +342,13 @@ export default {
 		},
 
 		*saveBtn() {
-			yield this.showPrompt(`确认要保存问卷？`);
+			yield this.showPrompt(`确认要保存考评？`);
 			yield this.saveData();
 			yield this.$router.push({path: '/'});
 		},
 
 		*releaseBtn() {
-			yield this.showPrompt(`确认要保存并发布问卷？`);
+			yield this.showPrompt(`确认要保存并发布考评？`);
 			yield (() => {
 				this.quData.state = 1;
 				this.quData.stateName = '发布中';
