@@ -78,8 +78,6 @@ export default
 
 
 
-
-
 <template    v-if="item.type === 'gap'">
 
 	  <el-form-item :prop="optIndex+item.group" :rules="[{ required: true, message: '区域不能为空'}]">
@@ -385,10 +383,14 @@ that.isSelect[key]=false
 }
 
 },
-changeSelect(a,b){
 
+
+
+changeSelect(a,b){
 	let that=this;
 
+	console.log("sb");
+	
 for (const key in that.isSelect) {
 
 if(key!=a+b){
@@ -404,9 +406,10 @@ that.isSelect[key]=false
 
 },
 
-   submitForm(formName) {
 
-	   
+
+
+   submitForm(formName) {
 let that=this;
 
 that.handleHide();
