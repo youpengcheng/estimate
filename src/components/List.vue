@@ -85,7 +85,7 @@ export default {
 
 	methods: {
 		checkItem(item, flag = null) {
-			
+
 			if (typeof item.checked === 'undefined') {
 				Vue.set(item, 'checked', true);
 			}
@@ -104,6 +104,11 @@ export default {
 		},
 
 		showPrompt(text) {
+			console.log("checkout branchEST");
+
+
+			
+			
 			this.promptText = text;
 			this.isShowPrompt = true;
 		},
