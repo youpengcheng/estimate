@@ -103,15 +103,17 @@ export default {
 			});
 		},
 
+
 		showPrompt(text) {
+
 			console.log("checkout branchEST");
-
-
-			
-			
+	console.log("checkout branch of feature1");
 			this.promptText = text;
+
 			this.isShowPrompt = true;
+
 		},
+
 
 		*deleteItem(item) {
 			yield this.showPrompt(`确认要删除《${item.title}》？`);
