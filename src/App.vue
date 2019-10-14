@@ -20,8 +20,11 @@
   </el-backtop>
     <el-backtop >
   </el-backtop>
+
   	<v-header></v-header>
+
   	<router-view></router-view>
+
   </div>
 
 </template>
@@ -48,7 +51,7 @@ export default {
   min-width: 110rem;
   height: 100%;
   font-family: arial;
-  background-color: #efefef;
+  /* background-color: #efefef; */
   /* overflow: auto; */
 }
 

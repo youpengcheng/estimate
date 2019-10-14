@@ -1,8 +1,7 @@
 <template>
 	<header id="header">
-		<h2>AR全景考评体系管理</h2>
-		<router-link tag="h3" to="/">我的AR全景考评体系
-</router-link>
+		<h2>AR全景考评体系</h2>
+
 	</header>
 </template>
 

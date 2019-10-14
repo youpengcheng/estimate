@@ -92,23 +92,21 @@ export default
 	v-model="isSelect[optIndex+item.name]"
 	>
 
-<div style="width:400px;">
-<el-row type="flex" class="row-bg" justify="space-between" style="color: #303133;font-size: 16px;line-height: 1; margin-bottom: 12px;">
-
- <el-col :span="9"><a  v-if="option.src" target="_Blank" :href="option.src">点击查看视频</a> {{item.src}}</el-col>
-
-<el-col :span="9" style="text-align:right">  <el-button type="danger" @click="handleHide" icon="el-icon-delete" circle></el-button></el-col>
+	<div style="width:400px;">
+<el-row style="color: #303133;font-size: 16px;line-height: 1; margin-bottom: 12px;">
+	  <el-button type="danger" @click="handleHide" icon="el-icon-delete" circle></el-button>
+ 扫码听音――――――――――➸➣➤♪
 </el-row>
 
-    <!-- <div style="float:right; clear: both;" align="center">
+
+    <div style="float:right; clear: both;" align="center">
+        <!-- <img src="images/bkjj.jpg" width="120" alt="" hspace="8"><br /> 图像标题 -->
 	    <el-image
-		v-if="option.src"
       style="width: 100px; height: 100px"
-      :src="option.src"
+      src="https://file.yssxjy.cn/est/1.png"
       :fit="fit"></el-image>
-    </div> -->
-    {{option.text}}
-    <!-- 这是一段描述内容xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    </div>
+    这是一段描述内容xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 </div>
 
 
@@ -146,14 +144,12 @@ export default
 	>
 
 
-
 <div style="width:400px;">
 <el-row type="flex" class="row-bg" justify="space-between" style="color: #303133;font-size: 16px;line-height: 1; margin-bottom: 12px;">
 
- <el-col :span="9"><a  v-if="option.src" target="_blank" :href="option.src">点击查看视频</a> {{item.src}}</el-col>
+ <el-col :span="9"><a  href="https://developers.weixin.qq.com/miniprogram/dev/framework/">点击查看视频</a></el-col>
 
 <el-col :span="9" style="text-align:right">  <el-button type="danger" @click="handleHide" icon="el-icon-delete" circle></el-button></el-col>
-
 </el-row>
 
     <!-- <div style="float:right; clear: both;" align="center">
@@ -170,13 +166,13 @@ export default
 
 	<!-- <input slot="reference" type="button" @click="visible = !visible" value="333"> -->
 
-    <el-radio-group slot="reference"  v-model="ruleForm[optIndex+item.name]">
+    <el-radio-name slot="reference"  v-model="ruleForm[optIndex+item.name]">
 
 	  <el-radio @change="changeSelect(optIndex,item.name)"  border="true" label="1">是</el-radio>
 
       <el-radio @change="changeSelect(optIndex,item.name)"  border="true" label="0">否</el-radio>
 
-    </el-radio-group>
+    </el-radio-name>
  
 
  </el-popover>

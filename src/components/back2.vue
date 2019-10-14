@@ -9,23 +9,23 @@
 
 			<header>
 				<span @click="iterator = backBtn(); iterator.next()">&lt; 返回</span>
-				<p>{{title }}</p>
+				<p>{{ quData.title }}</p>
 			</header>
 
 		<el-form :model="ruleForm" :rules="rules" ref="ruleForm"  class="demo-ruleForm">
-
 			<div class="qu-content">
-
-				<section class="qu-item" v-for="(item, index) in quData">
-					<h3>{{ `Q${index + 1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.name}`}}
+				<section class="qu-item" v-for="(item, index) in questions">
+					<h3>{{ `Q${index + 1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.topic}` }}
+						<span v-if="item.isMandatory"> *</span>
 					</h3>
 
-					<!-- <textarea rows="8"
+					<textarea rows="8"
 						      cols="80"
 					          v-if="item.type === 'textarea'"
 					          v-model="item.answer"
 					          :required="item.isMandatory">
-					</textarea> -->
+					</textarea>
+
 
 <!-- 
 <template>
@@ -52,17 +52,17 @@ export default
     }
 }
 </script> -->
-					<ul  class="options-list">
+					<ul v-else class="options-list">
 						<li v-for="(option, optIndex) in item.options">
 							<label>		
 
-   <!-- <el-radio-name v-model="radio2">
+   <!-- <el-radio-group v-model="radio2">
     <el-radio :label="3"></el-radio>
-	</el-radio-name> -->
+	</el-radio-group> -->
   <!-- <el-radio  :label="index + 1"><span>{{ option.name }}</span></el-radio> 
 								item.answer = optIndex -->		
  <!-- :v-model="item.id" -->
-<!-- 
+
 <template    v-if="item.type === 'radio'">
 								<input
                             v-model="item.id"
@@ -73,42 +73,38 @@ export default
 								>
 
 		{{option.name}}
-</template> -->
+</template>
 
 
 
 
+<template    v-if="item.type === 'gap'">
 
-<template    v-if="item.type === 2">
-
-
-	  <el-form-item :prop="optIndex+item.name" :rules="[{ required: true, message: '区域不能为空'}]">
+	  <el-form-item :prop="optIndex+item.group" :rules="[{ required: true, message: '区域不能为空'}]">
 
   <el-popover
     placement="top"
     width="400"
     trigger="manual"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
-	v-model="isSelect[optIndex+item.name]"
+	v-model="isSelect[optIndex+item.group]"
 	>
 
-<div style="width:400px;">
-<el-row type="flex" class="row-bg" justify="space-between" style="color: #303133;font-size: 16px;line-height: 1; margin-bottom: 12px;">
-
- <el-col :span="9"><a  v-if="option.src" target="_Blank" :href="option.src">点击查看视频</a> {{item.src}}</el-col>
-
-<el-col :span="9" style="text-align:right">  <el-button type="danger" @click="handleHide" icon="el-icon-delete" circle></el-button></el-col>
+	<div style="width:400px;">
+<el-row style="color: #303133;font-size: 16px;line-height: 1; margin-bottom: 12px;">
+	  <el-button type="danger" @click="handleHide" icon="el-icon-delete" circle></el-button>
+ 扫码听音――――――――――➸➣➤♪
 </el-row>
 
-    <!-- <div style="float:right; clear: both;" align="center">
+
+    <div style="float:right; clear: both;" align="center">
+        <!-- <img src="images/bkjj.jpg" width="120" alt="" hspace="8"><br /> 图像标题 -->
 	    <el-image
-		v-if="option.src"
       style="width: 100px; height: 100px"
-      :src="option.src"
+      src="https://file.yssxjy.cn/est/1.png"
       :fit="fit"></el-image>
-    </div> -->
-    {{option.text}}
-    <!-- 这是一段描述内容xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    </div>
+    这是一段描述内容xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 </div>
 
 
@@ -116,7 +112,7 @@ export default
 	{{option.before}}
 	<div slot="reference"  style="display:inline-block">
 
-    <el-input @focus="changeSelect(optIndex,item.name)"    v-model="ruleForm[optIndex+item.name]"  placeholder="填写数量"></el-input>
+    <el-input @focus="changeSelect(optIndex,item.group)"    v-model="ruleForm[optIndex+item.group]"  placeholder="填写数量"></el-input>
 
 	</div>
 	{{option.after}}
@@ -130,58 +126,55 @@ export default
 
 
 
- <!-- :prop="optIndex+item.name" -->
-<template   v-if="item.type === 1"> 
+ <!-- :prop="optIndex+item.group" -->
+<template   v-if="item.type === 'switch'"> 
 
   <!-- <span> {{option}} </span> -->
  
-  <el-form-item :label="option.name"   :prop="optIndex+item.name" :rules="[{ required: true, message: '区域不能为空'}]">
+
+  <el-form-item :label="option.name"   :prop="optIndex+item.group" :rules="[{ required: true, message: '区域不能为空'}]">
 
    <el-popover
     placement="top"
     width="400"
     trigger="manual"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
-	v-model="isSelect[optIndex+item.name]"
+	v-model="isSelect[optIndex+item.group]"
 	>
 
-
-
-<div style="width:400px;">
-<el-row type="flex" class="row-bg" justify="space-between" style="color: #303133;font-size: 16px;line-height: 1; margin-bottom: 12px;">
-
- <el-col :span="9"><a  v-if="option.src" target="_blank" :href="option.src">点击查看视频</a> {{item.src}}</el-col>
-
-<el-col :span="9" style="text-align:right">  <el-button type="danger" @click="handleHide" icon="el-icon-delete" circle></el-button></el-col>
-
+	<div style="width:400px;">
+<el-row style="color: #303133;font-size: 16px;line-height: 1; margin-bottom: 12px;">
+	  <el-button type="danger" @click="handleHide" icon="el-icon-delete" circle></el-button>
+ 扫码听音――――――――――➸➣➤♪
 </el-row>
 
-    <!-- <div style="float:right; clear: both;" align="center">
+    <div style="float:right; clear: both;" align="center">
+        <!-- <img src="images/bkjj.jpg" width="120" alt="" hspace="8"><br /> 图像标题 -->
 	    <el-image
 		v-if="option.src"
       style="width: 100px; height: 100px"
       :src="option.src"
       :fit="fit"></el-image>
-    </div> -->
+<!-- https://file.yssxjy.cn/est/1.png -->
+    </div>
+
     {{option.text}}
     <!-- 这是一段描述内容xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 </div>
 
-
 	<!-- <input slot="reference" type="button" @click="visible = !visible" value="333"> -->
 
-    <el-radio-group slot="reference"  v-model="ruleForm[optIndex+item.name]">
+    <el-radio-group slot="reference"  v-model="ruleForm[optIndex+item.group]">
 
-	  <el-radio @change="changeSelect(optIndex,item.name)"  border="true" label="1">是</el-radio>
+	  <el-radio @change="changeSelect(optIndex,item.group)"  border="true" label="1">是</el-radio>
 
-      <el-radio @change="changeSelect(optIndex,item.name)"  border="true" label="0">否</el-radio>
+      <el-radio @change="changeSelect(optIndex,item.group)"  border="true" label="0">否</el-radio>
 
     </el-radio-group>
- 
 
  </el-popover>
-<!-- ruleForm[optIndex+item.name] -->
-	  <!-- activeSpec(optIndex+item.name) -->
+<!-- ruleForm[optIndex+item.group] -->
+	  <!-- activeSpec(optIndex+item.group) -->
   </el-form-item>
 
 
@@ -267,7 +260,6 @@ export default {
 	name: 'Fill',
 	data() {
 		return {
-			title:'',
 			typeId:1,
 			isSelect:[],
 			visible:false,
@@ -383,13 +375,8 @@ changeSelect(a,b){
 	console.log("a");
 	console.log("e");
 	
-	console.log(that.isSelect);
-
-console.log(a+b);
 
 for (const key in that.isSelect) {
-
-	console.log("key"+key);
 
 if(key!=a+b){
 
@@ -399,7 +386,6 @@ that.isSelect[key]=false
 
 	 that.isSelect[key]=true
  }
-
 
 }
 
@@ -477,44 +463,25 @@ console.log(this.switchArray[index][optIndex]?true:false);
 	 },
 
 
-
 		getData() {
 
 			let id = this.$route.params.id;
-			let title=this.$route.params.title;
 
+this.typeId=this.$route.params.id;
+			this.quData = Store.fetch()[id - 1];
+	console.log(this.quData);
 
+			this.questions = this.quData.questions;
 
-this.title=title
+			this.questions.forEach((item) => {
 
- console.log("+++++++++",id,title);
- 
-
-
-      this.$api.getEstB({id:id}).then((res) => {
-
-		  console.log(res);
-		  
-	this.quData=res;
-
-        })
-
-
-// this.typeId=this.$route.params.id;
-// 			this.quData = Store.fetch()[id - 1];
-// 	console.log(this.quData);
-
-// 			this.questions = this.quData.questions;
-
-// 			this.questions.forEach((item) => {
-
-// 				if (item.type === 'checkbox') {
-// 					item.answer = [];
-// 				}
-// 				else {
-// 					item.answer = '';
-// 				}
-// 			});
+				if (item.type === 'checkbox') {
+					item.answer = [];
+				}
+				else {
+					item.answer = '';
+				}
+			});
 
 
 		},

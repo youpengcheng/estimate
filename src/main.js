@@ -4,6 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+
+import api from '../static/api'//引用文件
+
+Vue.prototype.$api = api//挂载到Vue实例上面
+
+
 import Element from 'element-ui'
 Vue.use(Element, {
   size: 'small' // 设置element-ui默认大小medium
