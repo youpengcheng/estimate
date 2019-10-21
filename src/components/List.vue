@@ -1,23 +1,142 @@
 <template>
 	<div class="container">
 
-<div class="mian">
 
+<div class="mian-left">
+
+<el-form :model="newShool" ref="newShool"  label-width="150px"  style="width:100%">
+
+  <el-form-item
+    label="房租x/月"
+    prop="x"
+    :rules="[
+      { required: true, message: '房租不能为空'},
+      { type: 'number', message: '房租必须为数字值'}
+    ]"
+  >
+    <el-input type="x" v-model.number="newShool.x" placeholder="房租每月多少钱?(单位万元)" auto-complete="off"></el-input>
+  </el-form-item>
+
+  <el-form-item
+    label="押金"
+    prop="y"
+    :rules="[
+      { required: true, message: '押金不能为空'},
+      { type: 'number', message: '押金必须为数字值'}
+    ]"
+  >
+    <el-input type="digit" v-model.number="newShool.y"  placeholder="押金是多少？(单位万元)" auto-complete="off"></el-input>
+  </el-form-item>
+
+
+  <el-form-item
+    label="校区面积"
+    prop="s"
+    :rules="[
+      { required: true, message: '校区面积不能为空'},
+      { type: 'number', message: '校区面积必须为数字值'}
+    ]"
+  >
+    <el-input type="digit" v-model.number="newShool.s"  placeholder="校区面积是多少？(单位万元)" auto-complete="off"></el-input>
+  </el-form-item>
+
+    <el-form-item
+    label="硬件设备投入"
+    prop="z"
+    :rules="[
+      { required: true, message: '硬件设备投入不能为空'},
+      { type: 'number', message: '硬件设备投入必须为数字值'}
+    ]"
+  >
+    <el-input type="digit" v-model.number="newShool.z"  placeholder="押金是多少？(单位万元)" auto-complete="off"></el-input>
+  </el-form-item>
+
+    <el-form-item
+    label="校区人员数"
+    prop="k"
+    :rules="[
+      { required: true, message: '校区人员数不能为空'},
+      { type: 'number', message: '校区人员数必须为数字值'}
+    ]"
+  >
+    <el-input type="digit" v-model.number="newShool.k"  placeholder="校区人员数是多少？(单位个)" auto-complete="off"></el-input>
+  </el-form-item>
+
+    <el-form-item
+    label="第一个月的市场投入"
+    prop="m"
+    :rules="[
+      { required: true, message: '市场投入不能为空'},
+      { type: 'number', message: '市场投入必须为数字值'}
+    ]"
+  >
+    <el-input type="digit" v-model.number="newShool.m"  placeholder="市场投入是多少？(单位万元)" auto-complete="off"></el-input>
+  </el-form-item>
+
+  <el-form-item>
+    <el-button type="primary" @click="submitForm('newShool')">开始计算</el-button>
+    <el-button @click="resetForm('newShool')">重置</el-button>
+  </el-form-item>
+
+</el-form>
+
+
+
+
+
+<el-form :model="oldShool" ref="oldShool"  label-width="150px"  style="width:100%">
+
+    <el-form-item
+    label="硬件设备投入"
+    prop="z"
+    :rules="[
+      { required: true, message: '硬件设备投入不能为空'},
+      { type: 'number', message: '硬件设备投入必须为数字值'}
+    ]"
+  >
+    <el-input type="digit" v-model.number="oldShool.z"  placeholder="押金是多少？(单位万元)" auto-complete="off"></el-input>
+  </el-form-item>
+
+    <el-form-item
+    label="校区人员数"
+    prop="k"
+    :rules="[
+      { required: true, message: '校区人员数不能为空'},
+      { type: 'number', message: '校区人员数必须为数字值'}
+    ]"
+  >
+    <el-input type="digit" v-model.number="oldShool.k"  placeholder="校区人员数是多少？(单位个)" auto-complete="off"></el-input>
+  </el-form-item>
+
+    <el-form-item
+    label="第一个月的市场投入"
+    prop="m"
+    :rules="[
+      { required: true, message: '市场投入不能为空'},
+      { type: 'number', message: '市场投入必须为数字值'}
+    ]"
+  >
+    <el-input type="digit" v-model.number="oldShool.m"  placeholder="市场投入是多少？(单位万元)" auto-complete="off"></el-input>
+  </el-form-item>
+
+  <el-form-item>
+    <el-button type="primary" @click="handleOldShool('oldShool')">开始计算</el-button>
+    <el-button @click="resetForm('newShool')">重置</el-button>
+  </el-form-item>
+
+</el-form>
+</div>
+
+
+
+<div class="mian">
 <!-- 
     <ul class="clearfix" id="J_service_container"> -->
 <template v-for="(item,index) in quList">
-
-
-
-
-	
 <!-- {path:'/hi1',name:'hi1',component:Hi1},      :to="{name:xxx,params:{key:value}}"-->
 
 <!-- `/fill/${item.id}${item.name}` -->
-
       <div  class="li"  :key="index">	<router-link  tag="span"  :to="{name:'Fill',params:{id:item.id,title:item.name}}"> <a href="">
-
-
         <div class="item-box">
         <h3>{{item.name}}</h3>
         <h4>拼搏出彩，出彩拼搏</h4>
@@ -67,8 +186,29 @@ import data from '../data.js'
 
 export default {
 	name: 'List',
+
 	data() {
 		return {
+		        numberValidateForm: {
+          age: ''
+		},
+		  newShool:{
+			  x:'',
+			  z:'',
+
+		  },
+		  oldShool:{},
+		       form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+      
 			
 			quList: [],
 			iterator: {},
@@ -109,6 +249,46 @@ export default {
 
 
 	methods: {
+				   handleOldShool(formName) {
+let that =this;
+        that.$refs[formName].validate((valid) => {
+          if (valid) {
+
+
+
+console.log("ssss");
+ that.diaLog=true;
+ that.money =parseInt(that.oldShool.z)+0.4*parseInt(that.oldShool.k)+parseInt(that.oldShool.m)
+
+  
+
+            alert(`建设校区需要投入${that.money}万元`);
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+		   submitForm(formName) {
+let that =this;
+        that.$refs[formName].validate((valid) => {
+          if (valid) {
+
+
+
+console.log("ssss");
+ that.diaLog=true;
+ that.money =parseInt(that.newShool.x)*6+parseInt(that.newShool.y)+0.04*parseInt(that.newShool.s)+parseInt(that.newShool.z)+parseInt(that.newShool.k)+parseInt(that.newShool.m)
+
+  
+
+            alert(`建设校区需要投入${that.money}万元`);
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
 		checkItem(item, flag = null) {
 
 			if (typeof item.checked === 'undefined') {
@@ -180,18 +360,67 @@ export default {
 
 <style scoped lang="scss">
 
+
 .container{
-// display: flex;
-// flex-direction:row;
-// flex-wrap: wrap;
-// justify-content:center;
-//  align-content:flex-start;
-// width: 100%;
-// height: 100%;
+display: flex;
+flex-direction:row;
+flex-wrap: wrap;
+justify-content:center;
+ align-content:flex-start;
+width: 100%;
+height: 100%;
+}
+
+
+
+.mian-left{
+	width: 30%;
+height: 100%;
+display: flex;
+flex-direction:row;
+flex-wrap: wrap;
+justify-content:center;
+ align-content:center;
+
+
+ .body-one{
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content:space-between;//主轴对齐方式
+  align-items: center;//单交叉轴对齐方式
+
+
+  .header-container {
+   position:relative;
+  width:100%;
+  // height:150px;
+display: flex;
+flex-direction:row;
+flex-wrap: wrap;
+justify-content:center;
+ align-content:flex-start;
+  }
+
+
+.footer-container{
+   position:relative;
+  width:100%;
+  // height:150px;
+display: flex;
+flex-direction:row;
+flex-wrap: wrap;
+justify-content:center;
+ align-content:flex-start;
+}
+  }
 }
 
 .mian{
-	width: 100%;
+	width: 70%;
 height: 100%;
 display: flex;
 flex-direction:row;
